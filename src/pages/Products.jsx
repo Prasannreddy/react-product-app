@@ -1,65 +1,60 @@
-import { useEffect, useState } from "react";
-import { getProducts, deleteProduct } from "../services/productService";
-import { useNavigate } from "react-router-dom";
-import "./Products.css";
+// import { useEffect, useState } from "react";
+// import { getProducts, deleteProduct } from "../services/productService";
+// import { useNavigate } from "react-router-dom";
+// import "./Products.css";
+// const Products = () => {
+//   const [products, setProducts] = useState([]);
+//   const navigate = useNavigate();
+//   useEffect(() => {
+//     getProducts().then((res) => setProducts(res.data));
+//   }, []);
+//   const handleDelete = (id) => {
+//     deleteProduct(id).then(() => {
+//       setProducts(products.filter((p) => p.id !== id));
+//     });
+//   };
+//   const logout = () => {
+//     localStorage.removeItem("token");
+//     navigate("/");
+//   };
+//   return (
+//     <div className="products-container">
+//       <div className="header">
+//         <h1>Products</h1>
+//         <div>
+//           <button onClick={() => navigate("/add")}>Add Product</button>
+//           <button onClick={logout} className="logout">
+//             Logout
+//           </button>
+//         </div>
+//       </div>
 
-const Products = () => {
-  const [products, setProducts] = useState([]);
-  const navigate = useNavigate();
+//       <div className="product-grid">
+//         {products.map((p) => (
+//           <div className="product-card" key={p.id}>
+//             <img src={p.image} alt={p.title} />
+//             <h4>{p.title}</h4>
+//             <p className="price">₹ {p.price}</p>
 
-  useEffect(() => {
-    getProducts().then((res) => setProducts(res.data));
-  }, []);
+//             <div className="actions">
+//               <button onClick={() => navigate(`/edit/${p.id}`)}>
+//                 Edit
+//               </button>
+//               <button
+//                 className="delete"
+//                 onClick={() => handleDelete(p.id)}
+//               >
+//                 Delete
+//               </button>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
 
-  const handleDelete = (id) => {
-    deleteProduct(id).then(() => {
-      setProducts(products.filter((p) => p.id !== id));
-    });
-  };
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
-
-  return (
-    <div className="products-container">
-      <div className="header">
-        <h2>Products</h2>
-        <div>
-          <button onClick={() => navigate("/add")}>Add Product</button>
-          <button onClick={logout} className="logout">
-            Logout
-          </button>
-        </div>
-      </div>
-
-      <div className="product-grid">
-        {products.map((p) => (
-          <div className="product-card" key={p.id}>
-            <img src={p.image} alt={p.title} />
-            <h4>{p.title}</h4>
-            <p className="price">₹ {p.price}</p>
-
-            <div className="actions">
-              <button onClick={() => navigate(`/edit/${p.id}`)}>
-                Edit
-              </button>
-              <button
-                className="delete"
-                onClick={() => handleDelete(p.id)}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default Products;
+// export default Products;
 // import { useEffect, useState } from "react";
 // import { getProducts } from "../services/productService";
 // import { Card, CardContent } from "../components/ui/card";
@@ -118,3 +113,70 @@ export default Products;
 
 // export default Products;
 
+import { useEffect, useState } from "react";
+import { getProducts, deleteProduct } from "../services/productService";
+import { useNavigate } from "react-router-dom";
+
+const Products = () => {
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getProducts().then((res) => setProducts(res.data));
+  }, []);
+
+  const handleDelete = (id) => {
+    deleteProduct(id).then(() => {
+      setProducts(products.filter((p) => p.id !== id));
+    });
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  return (
+    <div className="page-container">
+      {/* HEADER */}
+      <div className="page-header">
+        <h1 className="primary-title">Products</h1>
+      </div>
+
+      {/* 👇 PRODUCT GRID (THIS IS WHERE) */}
+      <div className="product-grid">
+        {products.map((p) => (
+          <div key={p.id} className="product-card">
+            <img
+              src={p.image}
+              alt={p.title}
+              className="product-image"
+            />
+
+            <h4 className="product-title">{p.title}</h4>
+            <p className="product-price">₹ {p.price}</p>
+
+            {/* 👇 BUTTONS ARE HERE */}
+            <div className="product-actions">
+              <button
+                onClick={() => navigate(`/edit/${p.id}`)}
+                className="edit-button"
+              >
+                Edit
+              </button>
+
+              <button
+                onClick={() => handleDelete(p.id)}
+                className="delete-button"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Products;

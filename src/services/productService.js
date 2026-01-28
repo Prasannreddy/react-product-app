@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const BASE_URL = "https://fakestoreapi.com/products";
+const BASE_URL = "https://dummyjson.com/products";
 
 export const getProducts = () => {
   return axios.get(BASE_URL);
 };
 
 export const addProduct = (product) => {
-  return axios.post(BASE_URL, product);
+  return axios.post(`${BASE_URL}/add`, product);
 };
 
 export const updateProduct = (id, product) => {
