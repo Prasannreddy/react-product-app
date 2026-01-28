@@ -138,25 +138,46 @@ const Products = () => {
 
   return (
     <div className="page-container">
-      {/* HEADER */}
       <div className="page-header">
         <h1 className="primary-title">Products</h1>
+
+        <div className="header-actions">
+          <button
+            onClick={() => navigate("/add")}
+            className="add-button"
+          >
+            + Add Product
+          </button>
+
+          <button
+            onClick={logout}
+            className="logout-button"
+          >
+            Logout
+          </button>
+        </div>
       </div>
 
-      {/* 👇 PRODUCT GRID (THIS IS WHERE) */}
       <div className="product-grid">
         {products.map((p) => (
-          <div key={p.id} className="product-card">
+          <div
+            key={p.id}
+            className="product-card"
+          >
             <img
               src={p.image}
               alt={p.title}
               className="product-image"
             />
 
-            <h4 className="product-title">{p.title}</h4>
-            <p className="product-price">₹ {p.price}</p>
+            <h4 className="product-title">
+              {p.title}
+            </h4>
 
-            {/* 👇 BUTTONS ARE HERE */}
+            <p className="product-price">
+              ₹ {p.price}
+            </p>
+
             <div className="product-actions">
               <button
                 onClick={() => navigate(`/edit/${p.id}`)}

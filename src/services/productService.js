@@ -1,19 +1,17 @@
 import axios from "axios";
 
-const BASE_URL = "https://dummyjson.com/products";
+const BASE_URL = "https://fakestoreapi.com/products";
 
-export const getProducts = () => {
-  return axios.get(BASE_URL);
-};
+export const getProducts = () => axios.get(BASE_URL);
 
-export const addProduct = (product) => {
-  return axios.post(`${BASE_URL}/add`, product);
-};
+export const getProductById = (id) =>
+  axios.get(`${BASE_URL}/${id}`);
 
-export const updateProduct = (id, product) => {
-  return axios.put(`${BASE_URL}/${id}`, product);
-};
+export const addProduct = (product) =>
+  axios.post(BASE_URL, product);
 
-export const deleteProduct = (id) => {
-  return axios.delete(`${BASE_URL}/${id}`);
-};
+export const updateProduct = (id, product) =>
+  axios.put(`${BASE_URL}/${id}`, product);
+
+export const deleteProduct = (id) =>
+  axios.delete(`${BASE_URL}/${id}`);
