@@ -60,3 +60,61 @@ const Products = () => {
 };
 
 export default Products;
+// import { useEffect, useState } from "react";
+// import { getProducts } from "../services/productService";
+// import { Card, CardContent } from "../components/ui/card";
+// import { Button } from "../components/ui/button";
+
+// const Products = () => {
+//   const [products, setProducts] = useState([]);
+
+//   useEffect(() => {
+//     loadProducts();
+//   }, []);
+
+//   const loadProducts = async () => {
+//     const res = await getProducts();
+//     setProducts(res.data);
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gray-100 p-8">
+//       <h1 className="text-3xl font-bold text-center mb-8">
+//         Products
+//       </h1>
+
+//       {/* GRID */}
+//       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+//         {products.map((product) => (
+//           <Card
+//             key={product.id}
+//             className="hover:shadow-xl transition duration-300"
+//           >
+//             <CardContent className="p-4">
+//               <img
+//                 src={product.image}
+//                 alt={product.title}
+//                 className="h-40 w-full object-contain mb-4"
+//               />
+
+//               <h2 className="font-semibold text-sm line-clamp-2">
+//                 {product.title}
+//               </h2>
+
+//               <p className="text-gray-700 font-bold mt-2">
+//                 ${product.price}
+//               </p>
+
+//               <Button className="w-full mt-3">
+//                 View Details
+//               </Button>
+//             </CardContent>
+//           </Card>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Products;
+

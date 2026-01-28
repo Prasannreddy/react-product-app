@@ -1,10 +1,19 @@
 import axios from "axios";
 
-const API_URL = "https://fakestoreapi.com/products";
+const BASE_URL = "https://fakestoreapi.com/products";
 
-export const getProducts = () => axios.get(API_URL);
-export const addProduct = (data) => axios.post(API_URL, data);
-export const updateProduct = (id, data) =>
-  axios.put(`${API_URL}/${id}`, data);
-export const deleteProduct = (id) =>
-  axios.delete(`${API_URL}/${id}`);
+export const getProducts = () => {
+  return axios.get(BASE_URL);
+};
+
+export const addProduct = (product) => {
+  return axios.post(BASE_URL, product);
+};
+
+export const updateProduct = (id, product) => {
+  return axios.put(`${BASE_URL}/${id}`, product);
+};
+
+export const deleteProduct = (id) => {
+  return axios.delete(`${BASE_URL}/${id}`);
+};
